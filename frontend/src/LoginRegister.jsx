@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from 'react-router-dom'; // Importar useNavigate
 import "./LoginRegister.css";
 import { IonIcon } from '@ionic/react';
 import { mailOutline, lockClosedOutline, personOutline, logoTwitter, logoFacebook, logoLinkedin, logoGoogle } from 'ionicons/icons';
 import api from './api'; // Importar el archivo api.js
 
 const LoginRegister = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isLogin, setIsLogin] = useState(searchParams.get('mode') !== 'register');
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -14,6 +15,10 @@ const LoginRegister = () => {
   });
 
   const navigate = useNavigate(); // Inicializar el hook useNavigate
+
+  useEffect(() => {
+    setIsLogin(searchParams.get('mode') !== 'register');
+  }, [searchParams]);
 
   const handleChange = (e) => {
     setFormData({
@@ -29,7 +34,7 @@ const LoginRegister = () => {
       const response = await api.post(url, formData); // Usar api.js con axios.post
       const data = response.data; // Obtener la respuesta de la API
   
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 201) {
         if (isLogin) {
           // Si es inicio de sesión, redirigir al dashboard
           console.log("Token:", data.token);
@@ -38,11 +43,7 @@ const LoginRegister = () => {
           // Si es registro, mostrar un mensaje y cambiar la vista a login
           alert("Registro exitoso. Ahora puede iniciar sesión.");
           setIsLogin(true); // Cambiar a la vista de inicio de sesión
-          
-          // Redirigir a la página de inicio de sesión después de un breve retraso
-          setTimeout(() => {
-            navigate('/login'); // O la ruta correspondiente para la vista de login
-          }, 1); 
+          setSearchParams({ mode: 'login' });
         }
       } else {
         console.error(data);
@@ -111,13 +112,13 @@ const LoginRegister = () => {
           <div className="loginregister-welcome-sign-up loginregister-welcome">
             <h3>¡Bienvenido!</h3>
             <p>Ingrese sus datos personales para usar todas las funciones del sitio</p>
-            <button className="loginregister-button" id="loginregister-btn-sign-up" onClick={() => setIsLogin(false)}>Registrarse</button>
+            <button className="loginregister-button" id="loginregister-btn-sign-up" onClick={() => setSearchParams({ mode: 'register' })}>Registrarse</button>
           </div>
 
           <div className="loginregister-welcome-sign-in loginregister-welcome">
             <h3>¡Hola!</h3>
             <p>Regístrate con tus datos personales para usar todas las funciones del sitio</p>
-            <button className="loginregister-button" id="loginregister-btn-sign-in" onClick={() => setIsLogin(true)}>Iniciar Sesión</button>
+            <button className="loginregister-button" id="loginregister-btn-sign-in" onClick={() => setSearchParams({ mode: 'login' })}>Iniciar Sesión</button>
           </div>
         </div>
       </div>

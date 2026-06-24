@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Header = () => {
@@ -13,8 +12,8 @@ const Header = () => {
           <Link to="/">Inicio</Link>
           <Link to="/servicios">Servicios</Link>
           <Link to="/contactos">Contactos</Link>
-          <button className="button" onClick={() => navigate('/LoginRegister')}>Iniciar sesión</button>
-          <button className="button" onClick={() => navigate('/LoginRegister')}>Crear cuenta</button>
+          <button className="button" onClick={() => navigate('/loginregister?mode=login')}>Iniciar sesión</button>
+          <button className="button" onClick={() => navigate('/loginregister?mode=register')}>Crear cuenta</button>
         </nav>
       </div>
       </div>

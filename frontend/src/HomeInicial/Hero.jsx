@@ -1,6 +1,8 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="hero">
       <div className="home-inicial">
@@ -8,7 +10,7 @@ const Hero = () => {
         <div className="home-container Hero" style={{ padding: '20px 0' }}>
           <h1>Bienvenido a <br />Accounting.SC</h1>
           <p>Tu socio confiable al alcance de tus manos</p>
-          <button className="btn-hero" onClick={() => window.location.href = '/LoginRegister'}>Regístrate Hoy</button>
+          <button className="btn-hero" onClick={() => navigate('/loginregister?mode=register')}>Regístrate Hoy</button>
         </div>
       </div>
     </section>
