@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from 'react-router-dom'; // Importar useNavigate
-import "./LoginRegister.css";
+import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import '../../styles/pages/LoginRegister.css';
 import { IonIcon } from '@ionic/react';
 import { mailOutline, lockClosedOutline, personOutline, logoTwitter, logoFacebook, logoLinkedin, logoGoogle } from 'ionicons/icons';
-import api from './api'; // Importar el archivo api.js
+import '../../services/api';
+import api from '../../services/api';
 
-const LoginRegister = () => {
+const LoginRegisterPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLogin, setIsLogin] = useState(searchParams.get('mode') !== 'register');
   const [formData, setFormData] = useState({
-    nombre: "",
-    email: "",
-    contraseña: "" 
+    nombre: '',
+    email: '',
+    contraseña: ''
   });
 
-  const navigate = useNavigate(); // Inicializar el hook useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLogin(searchParams.get('mode') !== 'register');
@@ -29,35 +30,33 @@ const LoginRegister = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isLogin ? "/auth/login" : "/auth/register"; 
+    const url = isLogin ? '/auth/login' : '/auth/register';
     try {
-      const response = await api.post(url, formData); // Usar api.js con axios.post
-      const data = response.data; // Obtener la respuesta de la API
-  
+      const response = await api.post(url, formData);
+      const data = response.data;
+
       if (response.status === 200 || response.status === 201) {
         if (isLogin) {
-          // Si es inicio de sesión, redirigir al dashboard
-          console.log("Token:", data.token);
-          navigate('/admindashboard'); 
+          console.log('Token:', data.token);
+          navigate('/admindashboard');
         } else {
-          // Si es registro, mostrar un mensaje y cambiar la vista a login
-          alert("Registro exitoso. Ahora puede iniciar sesión.");
-          setIsLogin(true); // Cambiar a la vista de inicio de sesión
+          alert('Registro exitoso. Ahora puede iniciar sesión.');
+          setIsLogin(true);
           setSearchParams({ mode: 'login' });
         }
       } else {
         console.error(data);
-        alert(data.message || "Ocurrió un error. Intenta nuevamente.");
+        alert(data.message || 'Ocurrió un error. Intenta nuevamente.');
       }
     } catch (error) {
       console.error(error);
-      alert("Ocurrió un error. Intenta nuevamente.");
+      alert('Ocurrió un error. Intenta nuevamente.');
     }
-  };  
+  };
 
   return (
     <div className="loginregister">
-      <div className={`loginregister-container ${isLogin ? '' : 'toggle'}`}> 
+      <div className={`loginregister-container ${isLogin ? '' : 'toggle'}`}>
         <div className="login-register loginregister-container-form">
           <form className={`loginregister-sign-in ${isLogin ? '' : 'hidden'}`} onSubmit={handleSubmit}>
             <h2>Iniciar Sesión</h2>
@@ -77,11 +76,10 @@ const LoginRegister = () => {
               <input type="password" name="contraseña" placeholder="Contraseña" value={formData.contraseña} onChange={handleChange} />
             </div>
             <a href="#">¿Olvidaste tu contraseña?</a>
-            <button type="submit" className="loginregister-button">INICIAR SESIÓN</button>                    
+            <button type="submit" className="loginregister-button">INICIAR SESIÓN</button>
           </form>
         </div>
 
-        {/* Formulario de Registro */}
         <div className="loginregister-container-form">
           <form className={`loginregister-sign-up ${isLogin ? 'hidden' : ''}`} onSubmit={handleSubmit}>
             <h2>Registrarse</h2>
@@ -126,4 +124,4 @@ const LoginRegister = () => {
   );
 };
 
-export default LoginRegister;
+export default LoginRegisterPage;

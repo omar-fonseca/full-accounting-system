@@ -1,5 +1,6 @@
 import { IonIcon } from '@ionic/react';
-import {logoFacebook, logoInstagram} from 'ionicons/icons';
+import { logoFacebook, logoInstagram } from 'ionicons/icons';
+import '../../../styles/pages/HomeInicial.css';
 
 function Footer() {
   return (

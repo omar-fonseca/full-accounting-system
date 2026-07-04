@@ -1,3 +1,4 @@
+import '../../../styles/pages/HomeInicial.css';
 
 function AdminSection() {
   return (

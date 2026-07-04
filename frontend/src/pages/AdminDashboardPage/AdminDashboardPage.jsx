@@ -1,25 +1,24 @@
-import { Container, Grid, Paper, Typography, Drawer, List, ListItem, ListItemText, Divider } from "@mui/material";
-import { LineChart, Line, PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
-import "./AdminDashboard.css";
+import { Container, Grid, Paper, Typography, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { LineChart, Line, PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
+import '../../styles/pages/AdminDashboard.css';
 
 const data = [
-  { name: "Enero", ventas: 4000 },
-  { name: "Febrero", ventas: 3000 },
-  { name: "Marzo", ventas: 5000 },
-  { name: "Abril", ventas: 7000 },
+  { name: 'Enero', ventas: 4000 },
+  { name: 'Febrero', ventas: 3000 },
+  { name: 'Marzo', ventas: 5000 },
+  { name: 'Abril', ventas: 7000 },
 ];
 
 const pieData = [
-  { name: "Productos A", value: 2400 },
-  { name: "Productos B", value: 4567 },
-  { name: "Productos C", value: 1398 },
-  { name: "Productos D", value: 9800 },
+  { name: 'Productos A', value: 2400 },
+  { name: 'Productos B', value: 4567 },
+  { name: 'Productos C', value: 1398 },
+  { name: 'Productos D', value: 9800 },
 ];
 
-function AdminDashboard() {
+function AdminDashboardPage() {
   return (
     <div className="dashboard">
-      {/* Barra Lateral */}
       <Drawer variant="permanent" className="dashboard-drawer">
         <Typography variant="h5" className="dashboard-title">ACCOUNTING.SC</Typography>
         <Divider />
@@ -43,13 +42,11 @@ function AdminDashboard() {
       </Drawer>
 
       <Container maxWidth="lg" className="dashboard-container">
-        {/* Cabecera */}
         <header className="dashboard-header">
           <h1>Bienvenidos a mi Sitio Dashboard</h1>
         </header>
 
         <Grid container spacing={3}>
-          {/* Paneles de Estadísticas */}
           <Grid item xs={12} sm={6} md={3}>
             <Paper className="dashboard-card">
               <Typography variant="h6">Usuarios Activos</Typography>
@@ -75,7 +72,6 @@ function AdminDashboard() {
             </Paper>
           </Grid>
 
-          {/* Gráfico de Línea de Ventas */}
           <Grid item xs={12} md={8}>
             <Paper className="dashboard-chart">
               <Typography variant="h6">Gráfico de Ventas Mensuales</Typography>
@@ -88,7 +84,6 @@ function AdminDashboard() {
             </Paper>
           </Grid>
 
-          {/* Gráfico de Pie de Productos */}
           <Grid item xs={12} md={4}>
             <Paper className="dashboard-chart">
               <Typography variant="h6">Distribución de Productos</Typography>
@@ -96,7 +91,7 @@ function AdminDashboard() {
                 <PieChart>
                   <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100}>
                     {pieData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={["#0088FE", "#00C49F", "#FFBB28", "#FF8042"][index % 4]} />
+                      <Cell key={`cell-${index}`} fill={['#0088FE', '#00C49F', '#FFBB28', '#FF8042'][index % 4]} />
                     ))}
                   </Pie>
                   <Tooltip />
@@ -105,7 +100,6 @@ function AdminDashboard() {
             </Paper>
           </Grid>
 
-          {/* Lista de Actividades Recientes */}
           <Grid item xs={12}>
             <Paper className="dashboard-activities">
               <Typography variant="h6">Actividades Recientes</Typography>
@@ -122,4 +116,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;
+export default AdminDashboardPage;

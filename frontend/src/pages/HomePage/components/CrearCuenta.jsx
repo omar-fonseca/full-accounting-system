@@ -1,3 +1,4 @@
+import '../../../styles/pages/HomeInicial.css';
 
 const CrearCuenta = () => {
   return (
@@ -19,5 +20,3 @@ const CrearCuenta = () => {
 };
 
 export default CrearCuenta;
-
-

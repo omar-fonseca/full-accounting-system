@@ -1,3 +1,5 @@
+import '../../../styles/pages/HomeInicial.css';
+
 function Testimonials() {
   return (
     <section className="home-inicial">

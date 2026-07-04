@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import '../../../styles/pages/HomeInicial.css';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -18,4 +19,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

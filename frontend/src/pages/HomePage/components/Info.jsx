@@ -1,3 +1,4 @@
+import '../../../styles/pages/HomeInicial.css';
 
 function Info() {
   return (
@@ -7,7 +8,7 @@ function Info() {
         <div className="info-content">
           <h2>Tu estación más eficiente</h2>
           <p>Descubre cómo mejorar tu gestión</p>
-          <button className='info-button'>Descubre Más</button>
+          <button className="info-button">Descubre Más</button>
         </div>
       </div>
     </section>
