@@ -1,103 +1,142 @@
-# Learning Notes
+# 05 Learning Notes
 
 # Biblioteca de Aprendizaje del Proyecto
 
 
-# Introducción
+# 1. Introducción
 
-Durante el desarrollo de Full Accounting System no solo se implementan funcionalidades; también se construye una base sólida de conocimientos en Ingeniería de Software.
+Durante el desarrollo del Full Accounting System (proyecto de control operativo tipo gasolinera + sistema administrativo), no solo se implementa software funcional, sino que también se construye una base estructurada de conocimiento en Ingeniería de Software.
 
-El propósito de esta biblioteca es documentar, de manera estructurada y progresiva, todos los conceptos técnicos aprendidos durante el desarrollo del proyecto.
-
-Cada documento explica no solo la teoría, sino también su aplicación práctica dentro del proyecto.
+Este repositorio de aprendizaje documenta los fundamentos teóricos y prácticos de todas las tecnologías utilizadas en el sistema, con enfoque en arquitectura, escalabilidad y aplicación real en producción.
 
 
-# Objetivos
+# 2. Propósito del sistema de documentación
 
-Esta biblioteca tiene como objetivos:
+Esta biblioteca tiene un doble propósito:
 
-- Comprender los fundamentos de cada tecnología utilizada.
-- Relacionar la teoría con la implementación práctica.
-- Registrar el aprendizaje adquirido durante el proyecto.
-- Servir como material de estudio para futuras entrevistas técnicas.
-- Facilitar la incorporación de nuevos desarrolladores al proyecto.
+### Técnico
+- Documentar todas las tecnologías del stack del proyecto
+- Entender su funcionamiento interno
+- Relacionarlas dentro de una arquitectura real
 
-
-# Metodología de Aprendizaje
-
-Cada tema sigue la misma estructura para mantener la consistencia de la documentación.
-
-Cada documento responde las siguientes preguntas:
-
-- ¿Qué es?
-- ¿Por qué existe?
-- ¿Qué problema resuelve?
-- ¿Cómo funciona internamente?
-- ¿Cómo lo utilizamos en este proyecto?
-- ¿Cuáles son las buenas prácticas?
-- ¿Cuáles son los errores más comunes?
-- ¿Cómo se implementa?
-- ¿Qué aprendimos?
+### Profesional
+- Servir como material de estudio para entrevistas técnicas
+- Funcionar como onboarding para nuevos desarrolladores
+- Demostrar capacidad de diseño de sistemas reales
 
 
-# Contenido
+# 3. Alcance tecnológico del proyecto
 
-## Fundamentos
+Este proyecto no está limitado a un solo lenguaje o framework. Es un sistema full-stack modular basado en JavaScript y su ecosistema.
 
-- JavaScript
+
+# 4. Stack tecnológico completo
+
+## 🟨 Lenguaje base
+- JavaScript (ES6+)
+
+
+## 🟩 Backend (Runtime y servidor)
 - Node.js
-- Express
-- React
+- Express.js
+
+
+## 🟦 Frontend (Interfaz de usuario)
+- React.js
 - React Router
 - React Hooks
+- Vite
 
-## Backend
 
-- Express
-- Middleware
-- JWT
-- CORS
-- dotenv
+## 🟧 Comunicación API
+- Axios
+- REST APIs
 
-## Base de Datos
 
+## 🟪 Base de datos
 - MongoDB
 - MongoDB Atlas
-- Mongoose
+- Mongoose (ODM)
 
-## Frontend
 
-- React
-- Vite
-- Axios
-- React Router
+## 🟥 Autenticación y seguridad
+- JWT (JSON Web Tokens)
+- dotenv (variables de entorno)
+- CORS (control de acceso)
 
-## Herramientas
 
+## 🟫 Herramientas de desarrollo
 - Git
 - GitHub
 - ESLint
 
-## Arquitectura
 
-- Arquitectura del proyecto
+## 🧠 Arquitectura y calidad de software
+- Arquitectura por capas
 - Separación de responsabilidades
-- Organización por capas
-- Debugging
-- Buenas prácticas
+- Debugging estructurado
+- Buenas prácticas de ingeniería
 
 
-# Filosofía
+# 5. Metodología de aprendizaje
 
-El propósito de esta biblioteca no es memorizar conceptos.
+Cada tecnología se documenta bajo una estructura estándar:
 
-El objetivo consiste en comprender el funcionamiento de cada tecnología, identificar los problemas que resuelve y entender cómo se integra dentro de una aplicación real.
+- Definición técnica
+- Propósito en ingeniería de software
+- Problema que resuelve
+- Funcionamiento interno conceptual
+- Casos de uso reales en el proyecto
+- Integración en el stack
+- Implementación básica
+- Buenas prácticas aplicadas al sistema
+- Errores comunes
+- Relación con otras tecnologías
+- Resumen técnico
 
-De esta manera, el aprendizaje se basa en la experiencia práctica obtenida durante el desarrollo del proyecto y no únicamente en definiciones teóricas.
+
+# 6. Organización de documentos
+
+Cada tecnología tiene su propio archivo dentro de:
 
 
-# Conclusiones
+05-learning-notes/ => Biblioteca de Aprendizaje del Proyecto
 
-Esta biblioteca constituye el material de estudio oficial del proyecto.
+- 01-javascript.md
+- 02-nodejs.md
+- 03-express.md
+- 04-react.md
+- 05-react-router.md
+- 06-react-hooks.md
+- 07-vite.md
+- 08-axios.md
+- 09-mongodb.md
+- 10-mongoose.md
+- 11-jwt.md
+- 12-dotenv.md
+- 13-cors.md
+- 14-git.md
+- 15-eslint.md
+- 16-architecture.md
+- 17-debugging.md
 
-Cada nuevo módulo implementado incorporará nuevos conceptos, permitiendo que la documentación evolucione al mismo ritmo que el software.
+
+# 7. Filosofía del aprendizaje
+
+Este sistema no está diseñado para memorizar conceptos.
+
+Está diseñado para comprender:
+
+- Cómo funciona cada tecnología internamente
+- Qué problema resuelve en sistemas reales
+- Cómo interactúa dentro de una arquitectura completa
+- Cómo se comporta en producción
+
+
+# 8. Conclusión
+
+Esta biblioteca es un componente crítico del proyecto Full Accounting System.
+
+No es documentación auxiliar.
+
+Es parte del sistema de ingeniería del software.
