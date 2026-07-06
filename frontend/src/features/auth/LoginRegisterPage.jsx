@@ -3,8 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import '../../styles/pages/LoginRegister.css';
 import { IonIcon } from '@ionic/react';
 import { mailOutline, lockClosedOutline, personOutline, logoTwitter, logoFacebook, logoLinkedin, logoGoogle } from 'ionicons/icons';
-import '../../services/api';
-import api from '../../services/api';
+import api from '../../services/apiClient';
 
 const LoginRegisterPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();

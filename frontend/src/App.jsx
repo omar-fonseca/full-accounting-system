@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from '../pages/HomePage/HomePage';
-import LoginRegisterPage from '../pages/LoginRegisterPage/LoginRegisterPage';
-import AdminDashboardPage from '../pages/AdminDashboardPage/AdminDashboardPage';
+import HomePage from './features/home/HomePage';
+import LoginRegisterPage from './features/auth/LoginRegisterPage';
+import AdminDashboardPage from './features/dashboard/AdminDashboardPage';
 
 function App() {
   return (
