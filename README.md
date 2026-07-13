@@ -316,7 +316,6 @@ Permite:
 ```
 ## 📁 Estructura General del Repositorio
 
-```text
 full-accounting-system/
 ├── README.md
 │
@@ -362,7 +361,6 @@ full-accounting-system/
     │   ├── app.js
     │   └── index.js
     └── package.json
-```
 
 ---
 
@@ -370,7 +368,6 @@ full-accounting-system/
 
 La documentación del proyecto se encuentra dentro de la carpeta:
 
-```
 docs/
     │
     ├── 01-project-overview.md
@@ -477,7 +474,7 @@ Logros:
 
 Estado:
 
-🚧 En progreso
+✅ Completada
 
 Objetivos:
 
