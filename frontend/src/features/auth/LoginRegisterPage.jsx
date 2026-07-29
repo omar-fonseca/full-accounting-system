@@ -58,7 +58,9 @@ const LoginRegisterPage = () => {
       <div className={`loginregister-container ${isLogin ? '' : 'toggle'}`}>
         <div className="login-register loginregister-container-form">
           <form className={`loginregister-sign-in ${isLogin ? '' : 'hidden'}`} onSubmit={handleSubmit}>
+            <div className="loginregister-brand-pill">KORE Station</div>
             <h2>Iniciar Sesión</h2>
+            <p className="loginregister-subtitle">Accede a tu panel con seguridad y estilo.</p>
             <div className="loginregister-social-networks">
               <IonIcon icon={logoTwitter} />
               <IonIcon icon={logoFacebook} />
@@ -81,7 +83,9 @@ const LoginRegisterPage = () => {
 
         <div className="loginregister-container-form">
           <form className={`loginregister-sign-up ${isLogin ? 'hidden' : ''}`} onSubmit={handleSubmit}>
+            <div className="loginregister-brand-pill">KORE Station</div>
             <h2>Registrarse</h2>
+            <p className="loginregister-subtitle">Crea tu cuenta y transforma la gestión financiera.</p>
             <div className="loginregister-social-networks">
               <IonIcon icon={logoTwitter} />
               <IonIcon icon={logoFacebook} />
