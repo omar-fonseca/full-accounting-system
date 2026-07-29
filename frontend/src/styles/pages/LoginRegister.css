@@ -79,11 +79,20 @@
   margin-bottom: 1.25rem;
 }
 
-.loginregister-social-networks ion-icon {
+.loginregister-social-networks ion-icon,
+.loginregister-social-networks .social-icon {
     border: 1px solid #c9cccb;
     border-radius: 6px;
     padding: 8px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginregister-social-networks .social-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
 .loginregister-container-form span {
@@ -103,6 +112,12 @@
   background: var(--surface-soft);
   border: 1px solid var(--border);
   border-radius: 14px;
+}
+
+.loginregister-container-input .input-icon {
+    width: 18px;
+    height: 18px;
+    color: rgba(0,0,0,0.6);
 }
 
 .loginregister-container-input input {

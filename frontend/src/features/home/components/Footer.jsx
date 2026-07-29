@@ -1,13 +1,11 @@
-import { IonIcon } from '@ionic/react';
-import { logoFacebook, logoInstagram } from 'ionicons/icons';
-import '../../../styles/pages/HomeInicial.css';
+import { FaInstagram, FaFacebookF } from 'react-icons/fa';
 
 function Footer() {
   return (
     <footer className="footer home-inicial">
       <div className="footer-container">
         <div className="footer-column">
-          <h3>Accounting.SC</h3>
+          <h3>KORE Station</h3>
           <ul>
             <li><a href="#">Acerca de Nosotros</a></li>
             <li><a href="#">Oportunidades</a></li>
@@ -27,8 +25,8 @@ function Footer() {
         <div className="footer-column">
           <h3>Redes Sociales</h3>
           <ul>
-            <li><a href="#">@Accounting.SC <IonIcon icon={logoInstagram} /></a></li>
-            <li><a href="#">@Accounting.SC <IonIcon icon={logoFacebook} /></a></li>
+            <li><a href="#">@KOREStation <FaInstagram className="social-icon instagram" /></a></li>
+            <li><a href="#">@KOREStation <FaFacebookF className="social-icon facebook" /></a></li>
             <li><a href="#">Boletines</a></li>
           </ul>
         </div>
@@ -37,7 +35,7 @@ function Footer() {
           <h3>Boletín Mensual</h3>
           <p>Consejos profesionales para la gestión de la contabilidad de estaciones.</p>
           <form action="#">
-            <input type="email" placeholder="correo@Accounting.SC.com" />
+            <input type="email" placeholder="correo@KOREStation.com" />
             <button type="submit">→</button>
           </form>
           <p className="terms">

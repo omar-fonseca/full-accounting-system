@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import '../../styles/pages/LoginRegister.css';
-import { IonIcon } from '@ionic/react';
-import { mailOutline, lockClosedOutline, personOutline, logoTwitter, logoFacebook, logoLinkedin, logoGoogle } from 'ionicons/icons';
+import { FaTwitter, FaFacebookF, FaLinkedinIn, FaGoogle } from 'react-icons/fa';
+import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import api from '../../services/apiClient';
 
 const LoginRegisterPage = () => {
@@ -62,18 +62,18 @@ const LoginRegisterPage = () => {
             <h2>Iniciar Sesión</h2>
             <p className="loginregister-subtitle">Accede a tu panel con seguridad y estilo.</p>
             <div className="loginregister-social-networks">
-              <IonIcon icon={logoTwitter} />
-              <IonIcon icon={logoFacebook} />
-              <IonIcon icon={logoLinkedin} />
-              <IonIcon icon={logoGoogle} />
+              <span className="social-icon twitter"><FaTwitter /></span>
+              <span className="social-icon facebook"><FaFacebookF /></span>
+              <span className="social-icon linkedin"><FaLinkedinIn /></span>
+              <span className="social-icon google"><FaGoogle /></span>
             </div>
             <span>Use su correo y contraseña</span>
             <div className="loginregister-container-input">
-              <IonIcon icon={mailOutline} />
+              <FiMail className="input-icon" />
               <input type="text" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
             </div>
             <div className="loginregister-container-input">
-              <IonIcon icon={lockClosedOutline} />
+              <FiLock className="input-icon" />
               <input type="password" name="contraseña" placeholder="Contraseña" value={formData.contraseña} onChange={handleChange} />
             </div>
             <a href="#">¿Olvidaste tu contraseña?</a>
@@ -87,22 +87,22 @@ const LoginRegisterPage = () => {
             <h2>Registrarse</h2>
             <p className="loginregister-subtitle">Crea tu cuenta y transforma la gestión financiera.</p>
             <div className="loginregister-social-networks">
-              <IonIcon icon={logoTwitter} />
-              <IonIcon icon={logoFacebook} />
-              <IonIcon icon={logoLinkedin} />
-              <IonIcon icon={logoGoogle} />
+              <span className="social-icon twitter"><FaTwitter /></span>
+              <span className="social-icon facebook"><FaFacebookF /></span>
+              <span className="social-icon linkedin"><FaLinkedinIn /></span>
+              <span className="social-icon google"><FaGoogle /></span>
             </div>
             <span>Use su correo electrónico para registrarse</span>
             <div className="loginregister-container-input">
-              <IonIcon icon={personOutline} />
+              <FiUser className="input-icon" />
               <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} />
             </div>
             <div className="loginregister-container-input">
-              <IonIcon icon={mailOutline} />
+              <FiMail className="input-icon" />
               <input type="text" name="email" placeholder="Tu correo" value={formData.email} onChange={handleChange} />
             </div>
             <div className="loginregister-container-input">
-              <IonIcon icon={lockClosedOutline} />
+              <FiLock className="input-icon" />
               <input type="password" name="contraseña" placeholder="Tu contraseña" value={formData.contraseña} onChange={handleChange} />
             </div>
             <button type="submit" className="loginregister-button">REGISTRARSE</button>

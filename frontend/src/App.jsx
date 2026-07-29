@@ -1,16 +1,26 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './features/home/HomePage';
-import LoginRegisterPage from './features/auth/LoginRegisterPage';
-import AdminDashboardPage from './features/dashboard/AdminDashboardPage';
+import './styles/theme.css';
+import MainLayout from './components/layouts/MainLayout';
+import { useTheme } from './hooks/useTheme';
+
+// Carga diferida de las páginas para reducir el tamaño inicial del bundle.
+const HomePage = lazy(() => import('./features/home/HomePage'));
+const LoginRegisterPage = lazy(() => import('./features/auth/LoginRegisterPage'));
+const AdminDashboardPage = lazy(() => import('./features/dashboard/AdminDashboardPage'));
 
 function App() {
+  const [theme, setTheme] = useTheme();
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/loginregister" element={<LoginRegisterPage />} />
-        <Route path="/admindashboard" element={<AdminDashboardPage />} />
-      </Routes>
+      <Suspense fallback={<div className="loading">Cargando...</div>}>
+        <Routes>
+          <Route path="/" element={<MainLayout theme={theme} setTheme={setTheme}><HomePage /></MainLayout>} />
+          <Route path="/loginregister" element={<LoginRegisterPage />} />
+          <Route path="/admindashboard" element={<AdminDashboardPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

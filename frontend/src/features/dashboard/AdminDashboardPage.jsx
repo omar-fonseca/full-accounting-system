@@ -20,7 +20,7 @@ function AdminDashboardPage() {
   return (
     <div className="dashboard">
       <Drawer variant="permanent" className="dashboard-drawer">
-        <Typography variant="h5" className="dashboard-title">ACCOUNTING.SC</Typography>
+        <Typography variant="h5" className="dashboard-title">KORE Station</Typography>
         <Divider />
         <List>
           <ListItem button>
