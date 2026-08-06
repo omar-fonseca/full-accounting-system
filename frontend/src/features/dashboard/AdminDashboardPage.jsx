@@ -1,6 +1,7 @@
 import { Container, Grid, Paper, Typography, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
 import { LineChart, Line, PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 import '../../styles/pages/AdminDashboard.css';
+import AuthUserMenu from '../../components/AuthUserMenu';
 
 const data = [
   { name: 'Enero', ventas: 4000 },
@@ -42,8 +43,9 @@ function AdminDashboardPage() {
       </Drawer>
 
       <Container maxWidth="lg" className="dashboard-container">
-        <header className="dashboard-header">
+        <header className="dashboard-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h1>Bienvenidos a mi Sitio Dashboard</h1>
+          <AuthUserMenu />
         </header>
 
         <Grid container spacing={3}>

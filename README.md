@@ -18,6 +18,11 @@ El proyecto está construido con principios de ingeniería de software profesion
 
 Este repositorio representa no solamente una aplicación funcional, sino también un proceso completo de aprendizaje y construcción de software bajo buenas prácticas profesionales.
 
+### Documentación relevante
+
+- Documentación técnica general: [docs/auth.md](docs/auth.md)
+- Notas de aprendizaje: [docs/05-learning-notes.md](docs/05-learning-notes.md)
+
 ---
 
 # 🎯 Objetivo General

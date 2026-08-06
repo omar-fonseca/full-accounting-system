@@ -1,55 +1,52 @@
-const bcrypt = require("bcrypt");
-const Usuario = require("../models/usuario.js");
+const bcrypt = require('bcrypt');
+const { Usuario } = require('../models/usuario');
+const { AppError } = require('../middlewares/errorMiddleware');
+const { sendSuccess } = require('../utils/response');
 
-// Controlador para obtener datos de un usuario
-exports.obtenerUsuario = async (req, res) => {
+const getUserByIdOrThrow = async (userId) => {
+  const user = await Usuario.findById(userId);
+  if (!user) {
+    throw new AppError('Usuario no encontrado', 404);
+  }
+  return user;
+};
+
+exports.obtenerUsuario = async (req, res, next) => {
   try {
-    const usuario = await Usuario.findById(req.params.id);
-    if (!usuario) {
-      return res.status(404).json("Usuario no encontrado.");
-    }
-    return res.json(usuario);
+    const user = await getUserByIdOrThrow(req.params.id);
+    return sendSuccess(res, 200, 'Usuario cargado correctamente', { user });
   } catch (error) {
-    console.error("Error al obtener el usuario:", error.message);
-    return res.status(500).json("Error en el servidor.");
+    next(error);
   }
 };
 
-// Controlador para actualizar un usuario
-exports.actualizarUsuario = async (req, res) => {
-  const { nombre, email, contraseña } = req.body;
-
+exports.actualizarUsuario = async (req, res, next) => {
   try {
-    let usuario = await Usuario.findById(req.params.id);
-    if (!usuario) {
-      return res.status(404).json("Usuario no encontrado.");
-    }
+    const { nombre, email, contraseña } = req.body;
+    const user = await getUserByIdOrThrow(req.params.id);
 
-    if (nombre) usuario.nombre = nombre;
-    if (email) usuario.email = email;
+    if (nombre) user.nombre = nombre;
+    if (email) user.email = email.toLowerCase().trim();
     if (contraseña) {
-      const hashedPassword = await bcrypt.hash(contraseña, 10);
-      usuario.contraseña = hashedPassword;
+      user.password = contraseña;
     }
 
-    await usuario.save();
-    return res.json("Usuario actualizado exitosamente.");
+    await user.save();
+    return sendSuccess(res, 200, 'Usuario actualizado exitosamente', { user });
   } catch (error) {
-    console.error("Error al actualizar el usuario:", error.message);
-    return res.status(500).json("Error en el servidor.");
+    next(error);
   }
 };
 
-// Controlador para eliminar un usuario
-exports.eliminarUsuario = async (req, res) => {
+exports.eliminarUsuario = async (req, res, next) => {
   try {
-    const usuario = await Usuario.findByIdAndDelete(req.params.id);
-    if (!usuario) {
-      return res.status(404).json("Usuario no encontrado.");
+    const user = await Usuario.findByIdAndDelete(req.params.id);
+    if (!user) {
+      throw new AppError('Usuario no encontrado', 404);
     }
-    return res.json("Usuario eliminado exitosamente.");
+
+    return sendSuccess(res, 200, 'Usuario eliminado exitosamente');
   } catch (error) {
-    console.error("Error al eliminar el usuario:", error.message);
-    return res.status(500).json("Error en el servidor.");
+    next(error);
   }
 };

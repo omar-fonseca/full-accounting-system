@@ -1,65 +1,73 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const Usuario = require("../models/usuario.js");
+/**
+ * Controlador de autenticación
+ * Maneja las peticiones HTTP relacionadas con autenticación
+ */
 
-// Función para generar un token JWT
-const generarToken = (id) => {
-  return jwt.sign({ id }, "process.env.JWT_SECRET", { expiresIn: "1h" });
+const authService = require('../services/authService');
+const { sendSuccess } = require('../utils/response');
+
+exports.register = async (req, res, next) => {
+  try {
+    const result = await authService.register(req.body);
+
+    return sendSuccess(res, 201, 'Usuario registrado exitosamente', result);
+  } catch (error) {
+    next(error);
+  }
 };
 
-// Controlador para registrar un usuario
-exports.registrarUsuario = async (req, res) => {
-  const { nombre, email, contraseña } = req.body;
-
-  if (!nombre || !email || !contraseña) {
-    return res.status(400).json("Por favor, completa todos los campos.");
-  }
-
+exports.login = async (req, res, next) => {
   try {
-    const usuarioExistente = await Usuario.findOne({ email });
-    if (usuarioExistente) {
-      return res.status(400).json("El usuario ya está registrado.");
-    }
+    const { email, password } = req.body;
+    const result = await authService.login(email, password);
 
-    const hashedPassword = await bcrypt.hash(contraseña, 10);
-    const nuevoUsuario = new Usuario({
-      nombre,
-      email,
-      contraseña: hashedPassword
+    res.cookie('refreshToken', result.refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    await nuevoUsuario.save();
-    const token = generarToken(nuevoUsuario._id);
-    return res.status(201).json({ message: "Usuario registrado exitosamente.", token });
+    return sendSuccess(res, 200, 'Inicio de sesión exitoso', {
+      user: result.user,
+      accessToken: result.accessToken
+    });
   } catch (error) {
-    console.error("Error al guardar el usuario:", error.message);
-    return res.status(500).json("Error en el servidor.");
+    next(error);
   }
 };
 
-// Controlador para iniciar sesión
-exports.iniciarSesion = async (req, res) => {
-  const { email, contraseña } = req.body;
-
-  if (!email || !contraseña) {
-    return res.status(400).json("Por favor, proporciona email y contraseña.");
-  }
-
+exports.logout = async (req, res, next) => {
   try {
-    const usuario = await Usuario.findOne({ email });
-    if (!usuario) {
-      return res.status(404).json("Usuario no encontrado.");
-    }
+    await authService.logout(req.user._id);
+    res.clearCookie('refreshToken');
 
-    const isMatch = await bcrypt.compare(contraseña, usuario.contraseña);
-    if (!isMatch) {
-      return res.status(401).json("Contraseña incorrecta.");
-    }
-
-    const token = generarToken(usuario._id);
-    return res.json({ message: "Inicio de sesión exitoso.", token });
+    return sendSuccess(res, 200, 'Sesión cerrada exitosamente');
   } catch (error) {
-    console.error("Error en el inicio de sesión:", error.message);
-    return res.status(500).json("Error en el servidor.");
+    next(error);
+  }
+};
+
+exports.refreshToken = async (req, res, next) => {
+  try {
+    const refreshTokenFromCookie = req.cookies?.refreshToken;
+    const refreshTokenFromBody = req.body?.refreshToken;
+    const refreshTokenFromQuery = req.query?.refreshToken;
+    const refreshTokenFromHeader = req.get('x-refresh-token');
+    const refreshToken = refreshTokenFromBody || refreshTokenFromCookie || refreshTokenFromQuery || refreshTokenFromHeader;
+    const result = await authService.refreshToken(refreshToken);
+
+    return sendSuccess(res, 200, 'Token renovado correctamente', result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getMe = async (req, res, next) => {
+  try {
+    const user = await authService.getMe(req.user._id);
+
+    return sendSuccess(res, 200, 'Usuario cargado correctamente', { user });
+  } catch (error) {
+    next(error);
   }
 };

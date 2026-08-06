@@ -2,6 +2,8 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './styles/theme.css';
 import MainLayout from './components/layouts/MainLayout';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './contexts/AuthContext';
 import { useTheme } from './hooks/useTheme';
 
 // Carga diferida de las páginas para reducir el tamaño inicial del bundle.
@@ -13,15 +15,20 @@ function App() {
   const [theme, setTheme] = useTheme();
 
   return (
-    <BrowserRouter>
-      <Suspense fallback={<div className="loading">Cargando...</div>}>
-        <Routes>
-          <Route path="/" element={<MainLayout theme={theme} setTheme={setTheme}><HomePage /></MainLayout>} />
-          <Route path="/loginregister" element={<LoginRegisterPage />} />
-          <Route path="/admindashboard" element={<AdminDashboardPage />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Suspense fallback={<div className="loading">Cargando...</div>}>
+          <Routes>
+            <Route path="/" element={<MainLayout theme={theme} setTheme={setTheme}><HomePage /></MainLayout>} />
+            <Route path="/loginregister" element={<LoginRegisterPage />} />
+
+            <Route element={<ProtectedRoute allowedRoles={['ADMIN', 'PROPIETARIO']} />}>
+              <Route path="/admindashboard" element={<AdminDashboardPage />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

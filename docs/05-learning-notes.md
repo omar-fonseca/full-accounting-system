@@ -119,6 +119,10 @@ Cada tecnología tiene su propio archivo dentro de:
 - 15-eslint.md
 - 16-architecture.md
 - 17-debugging.md
+- 18-auth/
+  - 01-introduccion.md
+  - 02-flujo-auth.md
+  - 03-errores-y-soluciones.md
 
 
 # 7. Filosofía del aprendizaje

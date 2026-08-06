@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import '../../styles/pages/LoginRegister.css';
 import { FaTwitter, FaFacebookF, FaLinkedinIn, FaGoogle } from 'react-icons/fa';
 import { FiMail, FiLock, FiUser } from 'react-icons/fi';
-import api from '../../services/apiClient';
+import { useAuth } from '../../contexts/AuthContext';
 
 const LoginRegisterPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -11,10 +11,13 @@ const LoginRegisterPage = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
-    contraseña: ''
+    password: ''
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { login, register } = useAuth();
 
   useEffect(() => {
     setIsLogin(searchParams.get('mode') !== 'register');
@@ -29,27 +32,42 @@ const LoginRegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isLogin ? '/auth/login' : '/auth/register';
-    try {
-      const response = await api.post(url, formData);
-      const data = response.data;
+    setError('');
+    setLoading(true);
 
-      if (response.status === 200 || response.status === 201) {
-        if (isLogin) {
-          console.log('Token:', data.token);
-          navigate('/admindashboard');
-        } else {
-          alert('Registro exitoso. Ahora puede iniciar sesión.');
-          setIsLogin(true);
-          setSearchParams({ mode: 'login' });
+    try {
+      if (isLogin) {
+        const result = await login({
+          email: formData.email,
+          password: formData.password
+        });
+
+        if (result?.success) {
+          const user = result?.data?.user;
+          const role = user?.role || result?.user?.role;
+
+          if (role === 'ADMIN' || role === 'PROPIETARIO') {
+            navigate('/admindashboard');
+          } else {
+            navigate('/');
+          }
         }
       } else {
-        console.error(data);
-        alert(data.message || 'Ocurrió un error. Intenta nuevamente.');
+        await register({
+          nombre: formData.nombre,
+          email: formData.email,
+          password: formData.password
+        });
+
+        setIsLogin(true);
+        setSearchParams({ mode: 'login' });
       }
-    } catch (error) {
-      console.error(error);
-      alert('Ocurrió un error. Intenta nuevamente.');
+    } catch (err) {
+      const backendMessage = err?.response?.data?.errors?.[0]?.message;
+      const fallbackMessage = err?.response?.data?.message || err?.message || 'Ocurrió un error inesperado';
+      setError(backendMessage || fallbackMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,16 +86,19 @@ const LoginRegisterPage = () => {
               <span className="social-icon google"><FaGoogle /></span>
             </div>
             <span>Use su correo y contraseña</span>
+            {error && <p style={{ color: '#ff6b6b', fontSize: '0.9rem' }}>{error}</p>}
             <div className="loginregister-container-input">
               <FiMail className="input-icon" />
-              <input type="text" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
             </div>
             <div className="loginregister-container-input">
               <FiLock className="input-icon" />
-              <input type="password" name="contraseña" placeholder="Contraseña" value={formData.contraseña} onChange={handleChange} />
+              <input type="password" name="password" placeholder="Contraseña" value={formData.password} onChange={handleChange} />
             </div>
             <a href="#">¿Olvidaste tu contraseña?</a>
-            <button type="submit" className="loginregister-button">INICIAR SESIÓN</button>
+            <button type="submit" className="loginregister-button" disabled={loading}>
+              {loading ? 'Procesando...' : 'INICIAR SESIÓN'}
+            </button>
           </form>
         </div>
 
@@ -93,19 +114,22 @@ const LoginRegisterPage = () => {
               <span className="social-icon google"><FaGoogle /></span>
             </div>
             <span>Use su correo electrónico para registrarse</span>
+            {error && <p style={{ color: '#ff6b6b', fontSize: '0.9rem' }}>{error}</p>}
             <div className="loginregister-container-input">
               <FiUser className="input-icon" />
               <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} />
             </div>
             <div className="loginregister-container-input">
               <FiMail className="input-icon" />
-              <input type="text" name="email" placeholder="Tu correo" value={formData.email} onChange={handleChange} />
+              <input type="email" name="email" placeholder="Tu correo" value={formData.email} onChange={handleChange} />
             </div>
             <div className="loginregister-container-input">
               <FiLock className="input-icon" />
-              <input type="password" name="contraseña" placeholder="Tu contraseña" value={formData.contraseña} onChange={handleChange} />
+              <input type="password" name="password" placeholder="Tu contraseña" value={formData.password} onChange={handleChange} />
             </div>
-            <button type="submit" className="loginregister-button">REGISTRARSE</button>
+            <button type="submit" className="loginregister-button" disabled={loading}>
+              {loading ? 'Procesando...' : 'REGISTRARSE'}
+            </button>
           </form>
         </div>
 
