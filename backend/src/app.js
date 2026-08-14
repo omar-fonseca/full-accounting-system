@@ -1,24 +1,20 @@
-require("dotenv").config();
+const loadEnv = require('../config/env');
+loadEnv();
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authUsuarios");
+const connectDB = require("../config/database");
 const { errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
 const PORT = Number(process.env.PORT || 5000);
 
-if (process.env.NODE_ENV !== "test" && process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI)
-    .then(() => {
-      console.log("Conexión a MongoDB Atlas exitosa.");
-    })
-    .catch((error) => {
-      console.error("Error al conectar a MongoDB:", error);
-    });
-} else if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV !== "test") {
+  connectDB();
+} else {
   console.log("Saltando conexión a MongoDB en entorno de pruebas.");
 }
 
@@ -51,4 +47,3 @@ if (require.main === module) {
 }
 
 module.exports = { app };
-

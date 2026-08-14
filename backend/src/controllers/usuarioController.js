@@ -22,13 +22,13 @@ exports.obtenerUsuario = async (req, res, next) => {
 
 exports.actualizarUsuario = async (req, res, next) => {
   try {
-    const { nombre, email, contraseña } = req.body;
+    const { nombre, email, password } = req.body;
     const user = await getUserByIdOrThrow(req.params.id);
 
     if (nombre) user.nombre = nombre;
     if (email) user.email = email.toLowerCase().trim();
-    if (contraseña) {
-      user.password = contraseña;
+    if (password) {
+      user.password = password;
     }
 
     await user.save();

@@ -2,8 +2,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import '../../styles/pages/LoginRegister.css';
 import { FaTwitter, FaFacebookF, FaLinkedinIn, FaGoogle } from 'react-icons/fa';
-import { FiMail, FiLock, FiUser } from 'react-icons/fi';
+import { FiMail, FiLock, FiUser, FiBriefcase } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
+
+const ROLES = [
+  { value: 'ADMIN', label: 'Administrador' },
+  { value: 'PROPIETARIO', label: 'Propietario' },
+  { value: 'OPERARIO', label: 'Operario' },
+  { value: 'CONTADOR', label: 'Contador' },
+  { value: 'CLIENTE', label: 'Cliente' }
+];
 
 const LoginRegisterPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -11,7 +19,8 @@ const LoginRegisterPage = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
-    password: ''
+    password: '',
+    role: 'PROPIETARIO'
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -43,10 +52,10 @@ const LoginRegisterPage = () => {
         });
 
         if (result?.success) {
-          const user = result?.data?.user;
-          const role = user?.role || result?.user?.role;
+          const user = result?.data?.user || result?.user;
+          const role = typeof user?.role === 'string' ? user.role.trim().toUpperCase() : '';
 
-          if (role === 'ADMIN' || role === 'PROPIETARIO') {
+          if (['ADMIN', 'PROPIETARIO'].includes(role)) {
             navigate('/admindashboard');
           } else {
             navigate('/');
@@ -56,7 +65,8 @@ const LoginRegisterPage = () => {
         await register({
           nombre: formData.nombre,
           email: formData.email,
-          password: formData.password
+          password: formData.password,
+          role: formData.role
         });
 
         setIsLogin(true);
@@ -126,6 +136,14 @@ const LoginRegisterPage = () => {
             <div className="loginregister-container-input">
               <FiLock className="input-icon" />
               <input type="password" name="password" placeholder="Tu contraseña" value={formData.password} onChange={handleChange} />
+            </div>
+            <div className="loginregister-container-input loginregister-container-select">
+              <FiBriefcase className="input-icon" />
+              <select name="role" value={formData.role} onChange={handleChange}>
+                {ROLES.map(r => (
+                  <option key={r.value} value={r.value}>{r.label}</option>
+                ))}
+              </select>
             </div>
             <button type="submit" className="loginregister-button" disabled={loading}>
               {loading ? 'Procesando...' : 'REGISTRARSE'}

@@ -14,7 +14,13 @@ const ProtectedRoute = ({ allowedRoles = [] }) => {
     return <Navigate to="/loginregister?mode=login" replace />;
   }
 
-  if (allowedRoles.length > 0 && user?.role && !allowedRoles.includes(user.role)) {
+  const role = typeof user?.role === 'string' ? user.role.trim().toUpperCase() : '';
+
+  if (allowedRoles.length > 0 && !user) {
+    return <Navigate to="/loginregister?mode=login" replace />;
+  }
+
+  if (allowedRoles.length > 0 && !allowedRoles.includes(role)) {
     return <Navigate to="/" replace />;
   }
 
