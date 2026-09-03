@@ -219,6 +219,14 @@ ESLint se integra con todo el ecosistema:
 * **CI/CD**: validación automática.
 * **Axios / MongoDB logic**: código analizado indirectamente.
 
+---
+
+# 11. Estado verificado en este proyecto
+
+Al ejecutar `npm run lint` desde `frontend/`, ESLint reportó 4 errores y 2 advertencias. Los errores corresponden a validación de props ausente en `ProtectedRoute` y `AuthContext`, y a variables no utilizadas en `AuthContext` y `apiClient`. Las advertencias corresponden a dependencias de `useMemo` y a la regla de Fast Refresh.
+
+Esto enseña una distinción importante: que ESLint esté configurado no significa que el código esté libre de incidencias. En esta auditoría se documentó el resultado, pero no se modificó código.
+
 ESLint actúa como guardián de calidad del código.
 
 ---

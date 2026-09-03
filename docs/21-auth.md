@@ -342,3 +342,11 @@ Este ejercicio de autenticación enseñó varias lecciones importantes:
 El módulo de autenticación del proyecto Full Accounting System ha pasado de una implementación básica a una base más estructurada, clara y profesional.
 
 Este avance no solo mejora la seguridad y la organización del proyecto, sino que también convierte la autenticación en un excelente ejemplo de aprendizaje para construir software con criterio de ingeniería.
+
+---
+
+# 14. Estado verificable al 2026-09-03
+
+El código actual confirma registro, login, logout, refresh, `getMe`, hashing con bcrypt, cookie de refresh token, middleware JWT y autorización puntual por roles. Las pruebas automatizadas ejecutadas en esta auditoría pasan: 2 pruebas en 1 suite. Solo cubren payload de login inválido y acceso a `/auth/me` sin token; no cubren un flujo end-to-end con MongoDB.
+
+El frontend usa `AuthContext`, `ProtectedRoute` y Axios. Guarda el access token en `localStorage`, mientras el refresh token se recibe en cookie con `httpOnly`. No se observó renovación automática del access token en el interceptor de Axios. Esta diferencia entre “implementado” y “probado end-to-end” debe conservarse al comunicar el estado del proyecto.

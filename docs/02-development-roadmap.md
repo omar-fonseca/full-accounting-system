@@ -306,3 +306,16 @@ El Roadmap constituye la guía estratégica del proyecto.
 Más que una lista de tareas, representa la planificación de la evolución del sistema y permite desarrollar cada funcionalidad sobre una base técnica estable, reduciendo riesgos y favoreciendo la calidad del software.
 
 Cada fase completada representa un incremento funcional del sistema y un nuevo aprendizaje adquirido durante el proceso de desarrollo.
+
+---
+
+# Actualización de estado verificado (2026-09-03)
+
+La auditoría actualiza la clasificación de las fases:
+
+- **Estabilización técnica:** parcialmente respaldada por historial y verificaciones previas; el lint actual todavía reporta errores.
+- **Autenticación:** implementada en el código y con pruebas básicas pasando; falta cobertura end-to-end y de producción.
+- **Dashboard administrativo:** parcial; existe la pantalla protegida, pero sus datos son estáticos y no hay módulos operativos conectados.
+- **Inventario, combustible, personal, turnos, ventas, contabilidad y reportes:** pendientes como funcionalidades de negocio.
+
+El siguiente incremento recomendado es el dashboard profesional, comenzando por contratos de usuarios/empleados y permisos, seguido por inventario y movimientos. El detalle está en [dashboard.md](dashboard.md) y [10-project-audit.md](10-project-audit.md).
