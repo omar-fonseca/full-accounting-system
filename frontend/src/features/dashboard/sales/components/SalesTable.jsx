@@ -1,0 +1,8 @@
+import PropTypes from 'prop-types';
+import { DashboardIcon } from '../../components/DashboardIcons';
+import { formatCurrency, formatDateTime, getPaymentLabel, getSaleType, getStatusLabel } from '../salesFormatters';
+
+const SalesTable = ({ sales, onSelect }) => <div className="sales-table-wrap"><table className="sales-table"><thead><tr><th>Fecha</th><th>Venta</th><th>Tipo</th><th>Empleado</th><th>Pago</th><th>Total</th><th>Estado</th><th><span className="sr-only">Acción</span></th></tr></thead><tbody>{sales.map((item) => <tr key={item._id || item.id}><td>{formatDateTime(item.soldAt)}</td><td><strong>#{String(item._id || item.id).slice(-8)}</strong></td><td><span className="sales-type">{getSaleType(item.items)}</span></td><td>{item.employee?.nombre || item.employee || 'No asignado'}</td><td>{getPaymentLabel(item.payment?.method)}</td><td><strong>{formatCurrency(item.total)}</strong></td><td><span className={`sales-status sales-status-${String(item.status || '').toLowerCase()}`}>{getStatusLabel(item.status)}</span></td><td><button type="button" className="sales-row-action" onClick={() => onSelect(item._id || item.id)} aria-label={`Ver venta ${item._id || item.id}`}><DashboardIcon name="ChevronRight" size={16} /></button></td></tr>)}</tbody></table></div>;
+
+SalesTable.propTypes = { sales: PropTypes.arrayOf(PropTypes.object).isRequired, onSelect: PropTypes.func.isRequired };
+export default SalesTable;
