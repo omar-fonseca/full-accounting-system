@@ -10,6 +10,8 @@ Su propósito es servir como línea base técnica (AS-IS), permitiendo comprende
 
 No pretende proponer cambios, sino documentar de forma precisa el estado actual del proyecto.
 
+> **Actualización de auditoría (2026-09-03):** este documento conserva su valor histórico, pero algunas descripciones quedaron desactualizadas. La referencia verificable más reciente es [10-project-audit.md](10-project-audit.md). En el código actual sí existen `services`, `middlewares`, `validators`, `contexts`, `hooks` y `features`; la autenticación ya está implementada y el dashboard existe como vista preliminar.
+
 ---
 
 ## 2. Visión General

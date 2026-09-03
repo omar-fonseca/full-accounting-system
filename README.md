@@ -18,6 +18,14 @@ El proyecto está construido con principios de ingeniería de software profesion
 
 Este repositorio representa no solamente una aplicación funcional, sino también un proceso completo de aprendizaje y construcción de software bajo buenas prácticas profesionales.
 
+### Documentación relevante
+
+- Documentación técnica general: [docs/auth.md](docs/auth.md)
+- Notas de aprendizaje: [docs/05-learning-notes.md](docs/05-learning-notes.md)
+- Diagnóstico verificable del estado actual: [docs/10-project-audit.md](docs/10-project-audit.md)
+- Roles y permisos: [docs/roles-and-permissions.md](docs/roles-and-permissions.md)
+- Diagnóstico y plan del dashboard: [docs/dashboard.md](docs/dashboard.md)
+
 ---
 
 # 🎯 Objetivo General
@@ -35,6 +43,8 @@ La visión del proyecto es evolucionar hacia una plataforma tipo ERP especializa
 ---
 
 # 🏗️ Arquitectura General del Sistema
+
+> Estado real a 2026-09-03: la autenticación y la base inicial del dashboard están implementadas; inventario, combustibles, ventas, turnos, contabilidad y reportes operativos siguen pendientes.
 
 El sistema está compuesto por tres capas principales:
 
@@ -118,10 +128,10 @@ Tecnologías:
 
 # 🧱 Enfoque Arquitectónico
 
-El proyecto sigue una arquitectura modular inspirada en principios de:
+El proyecto actual utiliza una arquitectura modular por capas, inspirada parcialmente en principios de:
 
-* Clean Architecture.
-* Domain Driven Design (DDD-Lite).
+* Clean Architecture, como referencia futura, no como implementación completa.
+* Domain Driven Design, como influencia conceptual, no como DDD formal.
 * Separación de responsabilidades.
 * Bajo acoplamiento.
 * Alta cohesión.

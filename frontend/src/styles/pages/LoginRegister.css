@@ -1,182 +1,265 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .loginregister * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .loginregister {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f4f3;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  background: var(--bg-gradient);
+  color: var(--text);
 }
 
-.loginregister-container {    
-    width: 800px;
-    height: 500px;
-    display: flex;
-    position: relative;
-    background-color: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgb(0,0,0,0.3);
+.loginregister-container {
+  width: min(100%, 900px);
+  min-height: 560px;
+  display: flex;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
 }
 
-.loginregister-container-form {    
-    width: 100%;
-    overflow: hidden;
+.loginregister-container-form {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--surface-soft), var(--surface));
 }
 
-.loginregister-container-form form {    
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s ease-in;
+.loginregister-container-form form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  transition: transform 0.5s ease-in;
+}
+
+.loginregister-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .loginregister-container-form h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 0.35rem;
+  color: var(--text);
 }
 
-.loginregister-social-networks {    
-    display: flex;
-    gap: 12px;
-    margin-bottom: 25px;    
+.loginregister-subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.loginregister-social-networks ion-icon {
+.loginregister-social-networks {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.loginregister-social-networks ion-icon,
+.loginregister-social-networks .social-icon {
     border: 1px solid #c9cccb;
     border-radius: 6px;
     padding: 8px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginregister-social-networks .social-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
 .loginregister-container-form span {
-    font-size: 12px;
-    margin-bottom: 15px;    
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
 }
 
-.loginregister-container-input {    
-    width: 300px;
-    height: 40px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 0 15px;
-    background-color: #EEEEEE;
+.loginregister-container-input {
+  width: min(100%, 320px);
+  height: 48px;
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0 0.95rem;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.loginregister-container-input .input-icon {
+    width: 18px;
+    height: 18px;
+    color: rgba(0,0,0,0.6);
 }
 
 .loginregister-container-input input {
-    border: none;
-    outline: none;
-    width: 100%;
-    height: 100%;
-    background-color: inherit;    
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: var(--text);
+}
+
+.loginregister-container-input input::placeholder {
+  color: var(--muted);
+}
+
+.loginregister-container-select select {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.loginregister-container-select select option {
+  color: #111;
+  background: #fff;
 }
 
 .loginregister-container-form a {
-    color: black;
-    font-size: 14px;
-    margin-bottom: 20px;
-    margin-top: 5px;
+  color: var(--primary);
+  font-size: 0.9rem;
+  margin: 0.4rem 0 1rem;
+  text-decoration: none;
 }
 
 .loginregister-button {
-    width: 170px;
-    height: 45px;
-    font-size: 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    color: #EEEEEE;
-    background-color: rgb(40, 149, 149);    
+  width: min(100%, 220px);
+  height: 46px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 0.8rem;
+  color: var(--surface-strong);
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  box-shadow: var(--primary-shadow);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .loginregister-button:hover {
-    background-color: rgb(42, 178, 178);
+  transform: translateY(-1px);
 }
 
-/*Animación de formulario*/
 .loginregister-sign-up {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .loginregister-container.toggle .loginregister-sign-in {
-    transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .loginregister-container.toggle .loginregister-sign-up {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
-/*welcome*/
 .loginregister-container-welcome {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transform: translateX(100%);
-    background-color: #3ab397;
-    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
-    overflow: hidden;
-    border-radius: 0 50% 0 50%;
+  position: absolute;
+  width: 46%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transform: translateX(100%);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+  overflow: hidden;
+  border-radius: 0 50% 0 50%;
 }
 
 .loginregister-container.toggle .loginregister-container-welcome {
-    transform: translateX(0);
-    border-radius: 50% 0 50% 0;
-    background-color: #3aa8ad;
+  transform: translateX(0);
+  border-radius: 50% 0 50% 0;
 }
 
-.loginregister-container-welcome .loginregister-welcome {    
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 0 50px;
-    color: white;
-    transition: transform 0.5s ease-in-out;
+.loginregister-container-welcome .loginregister-welcome {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  color: white;
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
 }
 
 .loginregister-welcome-sign-in {
-    transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .loginregister-container-welcome h3 {
-    font-size: 40px;    
+  font-size: 1.9rem;
 }
 
 .loginregister-container-welcome p {
-    font-size: 14px;
-    text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .loginregister-container-welcome .loginregister-button {
-    border: 2px solid white;
-    background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+  color: white;
+  box-shadow: none;
 }
 
 .loginregister-container-welcome .loginregister-button:hover {
-    background-color: rgb(42, 178, 178);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .loginregister-container.toggle .loginregister-welcome-sign-in {
-    transform: translateX(0%);
+  transform: translateX(0%);
 }
 
 .loginregister-container.toggle .loginregister-welcome-sign-up {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
+
+:root[data-theme="light"] .loginregister-container {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+:root[data-theme="light"] .loginregister-container-form {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(242, 248, 255, 0.9));
+}
+
+:root[data-theme="light"] .loginregister-brand-pill {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+

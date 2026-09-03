@@ -119,6 +119,10 @@ Cada tecnología tiene su propio archivo dentro de:
 - 15-eslint.md
 - 16-architecture.md
 - 17-debugging.md
+- 18-auth/
+  - 01-introduccion.md
+  - 02-flujo-auth.md
+  - 03-errores-y-soluciones.md
 
 
 # 7. Filosofía del aprendizaje
@@ -140,3 +144,11 @@ Esta biblioteca es un componente crítico del proyecto Full Accounting System.
 No es documentación auxiliar.
 
 Es parte del sistema de ingeniería del software.
+
+---
+
+# 9. Navegación de estudio actualizada
+
+La escuela explica conceptos por tecnología y los documentos técnicos explican su aplicación concreta. Para estudiar el estado real, comenzar por [10-project-audit.md](10-project-audit.md), continuar con [13-backend.md](13-backend.md), [14-frontend.md](14-frontend.md), [15-database.md](15-database.md), [16-api.md](16-api.md), [12-testing.md](12-testing.md) y [19-security.md](19-security.md). La diferencia entre arquitectura actual y objetivo se estudia en `06-current-architecture.md`, `07-target-architecture.md` y `16-architecture.md`.
+
+Cada lección tecnológica sigue siendo una base conceptual. Cuando una afirmación sobre implementación pueda cambiar, debe contrastarse con la auditoría y el código observado.

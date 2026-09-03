@@ -244,3 +244,20 @@ La arquitectura define cómo interactúan todas estas piezas.
 La arquitectura del sistema de gasolinera es un modelo full-stack desacoplado basado en cliente-servidor con API REST. Organiza el sistema en capas claramente separadas para garantizar escalabilidad, mantenibilidad y claridad estructural.
 
 En este proyecto, la arquitectura es el núcleo conceptual que permite que todos los módulos funcionen como un sistema coherente, escalable y profesional.
+
+---
+
+# 12. Aprendizaje de la auditoría AS-IS
+
+Una arquitectura no se demuestra por el nombre escrito en un documento, sino por las dependencias, responsabilidades y flujos que existen en el código. La inspección del estado actual permite precisar que este proyecto es una aplicación full stack con backend modular por capas y frontend organizado por features.
+
+Esto no equivale todavía a Clean Architecture ni a DDD formal. Esos conceptos requieren fronteras de dominio, casos de uso y dependencias orientadas hacia el núcleo. En el estado actual son referencias de evolución y principios de diseño, no etiquetas que debamos presentar como hechos implementados.
+
+La lección profesional es separar siempre:
+
+- **AS-IS:** lo que el repositorio implementa hoy.
+- **TO-BE:** la estructura que se desea construir.
+- **Evidencia:** pruebas, compilación o inspección que respaldan una afirmación.
+- **Recomendación:** mejora futura que aún no forma parte del sistema.
+
+Esta distinción evita sobre-documentar el sistema y permite explicar en una entrevista tanto las decisiones actuales como la dirección arquitectónica futura.
