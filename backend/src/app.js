@@ -6,6 +6,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authUsuarios");
+const salesRoutes = require("./routes/salesRoutes");
 const connectDB = require("../config/database");
 const { errorHandler } = require("./middlewares/errorMiddleware");
 
@@ -26,6 +27,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/auth", authRoutes);
+app.use("/sales", salesRoutes);
 app.use(errorHandler);
 
 if (require.main === module) {
