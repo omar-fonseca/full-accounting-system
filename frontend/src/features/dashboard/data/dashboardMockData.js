@@ -12,10 +12,10 @@ export const dashboardNavItems = [
 ];
 
 export const dashboardKpis = [
-  { label: 'Ventas de hoy', value: '$ 2.450.000', detail: 'vs. ayer', trend: '+12,4%', tone: 'positive', icon: 'TrendingUp' },
-  { label: 'Combustible vendido', value: '8.420 L', detail: 'últimas 24 horas', trend: '+8,1%', tone: 'positive', icon: 'Fuel' },
-  { label: 'Inventario crítico', value: '07', detail: 'productos requieren atención', trend: 'Revisar', tone: 'warning', icon: 'PackageSearch' },
-  { label: 'Turnos activos', value: '03', detail: 'de 04 programados', trend: 'En curso', tone: 'neutral', icon: 'Clock3' },
+  { label: 'Ventas de hoy', value: '$ 2.450.000', unit: 'COP', detail: 'vs. ayer', trend: '+12,4%', status: 'En seguimiento', updatedAt: 'Corte 14:32', tone: 'positive', icon: 'TrendingUp' },
+  { label: 'Combustible vendido', value: '8.420', unit: 'L', detail: 'últimas 24 horas', trend: '+8,1%', status: 'Operativo', updatedAt: 'Corte 14:32', tone: 'positive', icon: 'Fuel' },
+  { label: 'Inventario crítico', value: '07', unit: 'productos', detail: 'requieren atención', trend: 'Revisar', status: 'Atención requerida', updatedAt: 'Corte 14:10', tone: 'warning', icon: 'PackageSearch' },
+  { label: 'Turnos activos', value: '03', unit: 'de 04', detail: 'programados para hoy', trend: 'En curso', status: 'Cobertura parcial', updatedAt: 'Corte 14:00', tone: 'neutral', icon: 'Clock3' },
 ];
 
 export const salesData = [
